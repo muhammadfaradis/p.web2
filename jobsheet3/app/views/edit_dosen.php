@@ -1,10 +1,9 @@
 <?php
 include 'header.php';
 ?>
- 
 
 <?php
-include '../classes/database.php';
+include '../classes/database2.php';
 $db = new database();
 ?>
 
@@ -23,28 +22,27 @@ $db = new database();
     </div>
   </div>
 </nav>
-
+ 
 <div>
 <br>
-<h1 class="h2" height="50px">Edit Mahasiswa</h1>
+<h1 class="h2" height="50px">Edit Dosen</h1>
 </div>
-<br/>
-	<div>
-        <button type="button" class="btn btn-danger"><a href="tampil_mhs.php">KEMBALI</a></button>
+	
+	<br>
+    <div>
+        <button type="button" class="btn btn-danger"><a href="tampil_dosen.php">KEMBALI</a></button>
     </div>
-	<br/>
-	<br/>
 
-<form action="proses_mhs.php?aksi=update" method="post">
+<form action="proses_dosen.php?aksi=update" method="post">
 <?php
 foreach($db->edit($_GET['id']) as $d){
 
     ?>
-      <div class="table-responsive small">
+  <div class="table-responsive small">
     <div class="col-md-2">
-        <label for="inputCity" class="form-label">NIM</label>
-        <input type="hidden" name="id" value="<?php echo $d['nim'] ?>">
-        <input type="text" name="nim" class="form-control" value="<?php echo $d['nim'] ?>">
+        <label for="inputCity" class="form-label">NIDN</label>
+        <input type="hidden" name="id" value="<?php echo $d['nidn'] ?>">
+        <input type="text" name="nidn" class="form-control" value="<?php echo $d['nidn'] ?>">
     </div>
     <div class="col-md-2">
         <label for="inputCity" class="form-label">Nama</label>
@@ -52,12 +50,13 @@ foreach($db->edit($_GET['id']) as $d){
     </div>
     <div class="mb-3 col-md-2">
         <label for="exampleFormControlTextarea1" class="form-label">Alamat</label>
-        <textarea class="form-control" name="alamat" rows="3"><?php echo $d['alamat'] ?></textarea>
+        <textarea class="form-control" name="matkul" rows="3"><?php echo $d['matkul'] ?></textarea>
     </div>
         <tr>
             <td></td>
             <td><input type="submit" value="simpan" class="btn btn-success"></td>
         </tr>
+    </table>
 <?php    
 }
 ?>

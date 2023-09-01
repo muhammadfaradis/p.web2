@@ -21,30 +21,35 @@ include 'header.php';
 
 <div>
 <br>
-<h1 class="h2" height="50px">Tambah Mahasiswa</h1>
+<h1 class="h2" height="50px">Tambah Data Buku</h1>
 </div>
 
 <div>
-    <td><a href="tampil_mhs.php" class="btn btn-danger ">KEMBALI</a></td>
+    <td><a href="tampil_buku.php" class="btn btn-danger ">KEMBALI</a></td>
 </div>
 <br/>
 <br>
 
-<form action="proses_mhs.php?aksi=tambah" method="post">
+<form action="proses_buku.php?aksi=tambah" method="post">
     <div class="table-responsive small">
     <div class="col-md-2">
-        <label for="inputCity" class="form-label">NIM</label>
-        <input type="text" name="nim" class="form-control">
+        <label for="inputCity" class="form-label">Judul</label>
+        <input type="text" name="judul" class="form-control">
     </div>
     <div class="col-md-2">
-        <label for="inputCity" class="form-label">Nama</label>
-        <input type="text" name="nama" class="form-control">
+        <label for="inputCity" class="form-label">Pengarang</label>
+        <input type="text" name="pengarang" class="form-control">
     </div>
-    <div class="mb-3 col-md-2">
-        <label for="exampleFormControlTextarea1" class="form-label">Alamat</label>
-        <textarea class="form-control" name="alamat" rows="3"></textarea>
+    <div class="col-md-2">
+        <label for="inputCity" class="form-label">Tahun Terbit</label>
+        <input type="text" name="tahun_terbit" class="form-control">
+    </div>
+    <div class="col-md-2">
+        <label for="inputCity" class="form-label">Harga</label>
+        <input type="text" name="harga" class="form-control">
     </div>
         <tr>
+            <br>
             <td></td>
             <td><input type="submit" value="simpan" class="btn btn-success"></td>
         </tr>

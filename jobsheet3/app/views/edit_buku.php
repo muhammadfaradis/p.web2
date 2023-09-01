@@ -4,7 +4,7 @@ include 'header.php';
  
 
 <?php
-include '../classes/database.php';
+include '../classes/datauts.php';
 $db = new database();
 ?>
 
@@ -26,33 +26,37 @@ $db = new database();
 
 <div>
 <br>
-<h1 class="h2" height="50px">Edit Mahasiswa</h1>
+<h1 class="h2" height="50px">Edit Buku</h1>
 </div>
 <br/>
 	<div>
-        <button type="button" class="btn btn-danger"><a href="tampil_mhs.php">KEMBALI</a></button>
+        <button type="button" class="btn btn-danger"><a href="tampil_buku.php">KEMBALI</a></button>
     </div>
 	<br/>
 	<br/>
 
-<form action="proses_mhs.php?aksi=update" method="post">
+<form action="proses_buku.php?aksi=update" method="post">
 <?php
 foreach($db->edit($_GET['id']) as $d){
 
     ?>
       <div class="table-responsive small">
     <div class="col-md-2">
-        <label for="inputCity" class="form-label">NIM</label>
-        <input type="hidden" name="id" value="<?php echo $d['nim'] ?>">
-        <input type="text" name="nim" class="form-control" value="<?php echo $d['nim'] ?>">
+        <label for="inputCity" class="form-label">Judul</label>
+        <input type="hidden" name="id" value="<?php echo $d['judul'] ?>">
+        <input type="text" name="judul" class="form-control" value="<?php echo $d['judul'] ?>">
     </div>
     <div class="col-md-2">
-        <label for="inputCity" class="form-label">Nama</label>
-        <input type="text" name="nama" class="form-control" value="<?php echo $d['nama'] ?>">
+        <label for="inputCity" class="form-label">Pengarang</label>
+        <input type="text" name="pengarang" class="form-control" value="<?php echo $d['pengarang'] ?>">
     </div>
-    <div class="mb-3 col-md-2">
-        <label for="exampleFormControlTextarea1" class="form-label">Alamat</label>
-        <textarea class="form-control" name="alamat" rows="3"><?php echo $d['alamat'] ?></textarea>
+    <div class="col-md-2">
+        <label for="inputCity" class="form-label">Tahun Terbit</label>
+        <input type="text" name="tahun_terbit" class="form-control" value="<?php echo $d['tahun_terbit'] ?>">
+    </div>
+    <div class="col-md-2">
+        <label for="inputCity" class="form-label">Harga</label>
+        <input type="text" name="harga" class="form-control" value="<?php echo $d['harga'] ?>">
     </div>
         <tr>
             <td></td>

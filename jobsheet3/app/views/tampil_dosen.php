@@ -2,7 +2,16 @@
 include 'header.php';
 ?>
  
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+
+<?php
+//memanggil class database
+include "../classes/database2.php";
+//instansiasi database
+$db = new database;
+?>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">SIPALING!</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,46 +27,38 @@ include 'header.php';
   </div>
 </nav>
 
-<?php
-//memanggil class database
-include "../classes/database.php";
-//instansiasi database
-$db = new database;
-?>
-
-<div>
+    <div class="table-responsive small">
+    <div>
   <br>
-<h1 class="h2" height="50px" align="center">Tabel Data Mahasiswa</h1>
+<h1 class="h2" height="50px" align="center">Tabel Data Dosen</h1>
 </div>
 <div>
-  <a href="input_mhs.php" class="btn btn-primary btn-lg">Tambah Mahasiswa</a>
+  <a href="input_dosen.php" class="btn btn-primary btn-lg">Tambah Dosen</a>
   </div>
 <div class="table-responsive small">
   <br>
 <table class="table table-bordered">
     <thead class="table table-dark">
-        <tr>
-            <th scope="col">No</th>
-            <th scope="col">NIM</th>
-            <th scope="col">Nama</th>
-            <th scope="col">Alamat</th>
-            <th scope="col">Aksi</th>
-        </tr>
-        
-    </thead>
-
+    <tr>
+        <th>No</th>
+        <th>NIDN</th>
+        <th>Nama</th>
+        <th>Matkul</th>
+        <th>Aksi</th>
+    </tr>
+</thead>
     <?php
     $no=1;
-    foreach($db->tampil_mahasiswa() as $x){
+    foreach($db->tampil_dosen() as $x){
     ?>
     <tr>
         <td><?php echo $no++?></td>
-        <td><?php echo $x ['nim']?></td>
+        <td><?php echo $x ['nidn']?></td>
         <td><?php echo $x ['nama']?></td>
-        <td><?php echo $x ['alamat']?></td>
+        <td><?php echo $x ['matkul']?></td>
         <td>
-            <a href="edit_mhs.php?id=<?php echo $x['nim']; ?>&aksi=edit" class="btn btn-warning">Edit</a>
-            <a href="proses_mhs.php?id=<?php echo $x['nim']; ?>&aksi=hapus" class="btn btn-danger">Hapus</a>
+            <a href="edit_dosen.php?id=<?php echo $x['nidn']; ?>&aksi=edit" class="btn btn-warning">Edit</a>
+            <a href="proses_dosen.php?id=<?php echo $x['nidn']; ?>&aksi=hapus" class="btn btn-danger">Hapus</a>
         </td>
     </tr>
     <?php        

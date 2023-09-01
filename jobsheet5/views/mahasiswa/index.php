@@ -8,21 +8,27 @@ include 'header.php';
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> 
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="tampil_mhs.php">Mahasiswa</a>
         <a class="nav-link active" aria-current="page" href="tampil_dosen.php">Dosen</a>
-        <a class="nav-link active" aria-current="page" href="tampil_buku.php">Buku</a>
+        <a class="nav-link active" aria-current="page" href="tampil_buku.php">Buku</a>     
      </div>
     </div>
   </div>
 </nav>
 
 <?php
-//memanggil class database
-include "../classes/database.php";
-//instansiasi database
-$db = new database;
+//memanggil class model database
+include_once '../../config.php';
+include_once '../../controllers/MahasiswaController.php';
+
+//instansiasi
+$database = new database;
+$db = $database->getKoneksi();
+
+$mahasiswaController = new MahasiswaController($db);
+$mahasiswa = $mahasiswaController->getAllMahasiswa();
 ?>
 
 <div>
@@ -40,6 +46,10 @@ $db = new database;
             <th scope="col">No</th>
             <th scope="col">NIM</th>
             <th scope="col">Nama</th>
+            <th scope="col">Tempat Lahir</th>
+            <th scope="col">Tanggal Lahir</th>
+            <th scope="col">Jenis Kelamin</th>
+            <th scope="col">Agama</th>
             <th scope="col">Alamat</th>
             <th scope="col">Aksi</th>
         </tr>
@@ -48,12 +58,16 @@ $db = new database;
 
     <?php
     $no=1;
-    foreach($db->tampil_mahasiswa() as $x){
+    foreach($mahasiswa as $x){
     ?>
     <tr>
         <td><?php echo $no++?></td>
         <td><?php echo $x ['nim']?></td>
         <td><?php echo $x ['nama']?></td>
+        <td><?php echo $x ['tempat_lahir']?></td>
+        <td><?php echo $x ['tanggal_lahir']?></td>
+        <td><?php echo $x ['jenis_kelamin']?></td>
+        <td><?php echo $x ['agama']?></td>
         <td><?php echo $x ['alamat']?></td>
         <td>
             <a href="edit_mhs.php?id=<?php echo $x['nim']; ?>&aksi=edit" class="btn btn-warning">Edit</a>

@@ -2,7 +2,16 @@
 include 'header.php';
 ?>
  
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+
+<?php
+//memanggil class database
+include "../classes/datauts.php";
+//instansiasi database
+$db = new database;
+?>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">SIPALING!</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,52 +21,46 @@ include 'header.php';
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="tampil_mhs.php">Mahasiswa</a>
         <a class="nav-link active" aria-current="page" href="tampil_dosen.php">Dosen</a>
-        <a class="nav-link active" aria-current="page" href="tampil_buku.php">Buku</a>
+        <a class="nav-link active" aria-current="page" href="tampil_dosen.php">Buku</a>
      </div>
     </div>
   </div>
 </nav>
 
-<?php
-//memanggil class database
-include "../classes/database.php";
-//instansiasi database
-$db = new database;
-?>
-
-<div>
+    <div class="table-responsive small">
+    <div>
   <br>
-<h1 class="h2" height="50px" align="center">Tabel Data Mahasiswa</h1>
+<h1 class="h2" height="50px" align="center">Tabel Data Buku</h1>
 </div>
 <div>
-  <a href="input_mhs.php" class="btn btn-primary btn-lg">Tambah Mahasiswa</a>
+  <a href="input_buku.php" class="btn btn-success btn-lg">Tambah Buku</a>
   </div>
 <div class="table-responsive small">
   <br>
 <table class="table table-bordered">
     <thead class="table table-dark">
-        <tr>
-            <th scope="col">No</th>
-            <th scope="col">NIM</th>
-            <th scope="col">Nama</th>
-            <th scope="col">Alamat</th>
-            <th scope="col">Aksi</th>
-        </tr>
-        
+    <tr>
+        <th>No</th>
+        <th>Judul</th>
+        <th>Pengarang</th>
+        <th>Tahun Terbit</th>
+        <th>Harga</th>
+        <th>Aksi</th>
+    </tr>
     </thead>
-
     <?php
     $no=1;
-    foreach($db->tampil_mahasiswa() as $x){
+    foreach($db->tampil_judul() as $x){
     ?>
     <tr>
         <td><?php echo $no++?></td>
-        <td><?php echo $x ['nim']?></td>
-        <td><?php echo $x ['nama']?></td>
-        <td><?php echo $x ['alamat']?></td>
+        <td><?php echo $x ['judul']?></td>
+        <td><?php echo $x ['pengarang']?></td>
+        <td><?php echo $x ['tahun_terbit']?></td>
+        <td><?php echo $x ['harga']?></td>
         <td>
-            <a href="edit_mhs.php?id=<?php echo $x['nim']; ?>&aksi=edit" class="btn btn-warning">Edit</a>
-            <a href="proses_mhs.php?id=<?php echo $x['nim']; ?>&aksi=hapus" class="btn btn-danger">Hapus</a>
+            <a href="edit_buku.php?id=<?php echo $x['judul']; ?>&aksi=edit" class="btn btn-warning">Edit</a>
+            <a href="proses_buku.php?id=<?php echo $x['judul']; ?>&aksi=hapus" class="btn btn-danger">Hapus</a>
         </td>
     </tr>
     <?php        
